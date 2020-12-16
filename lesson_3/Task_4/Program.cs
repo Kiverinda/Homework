@@ -10,14 +10,21 @@ namespace Task_4
     {
         static void Main(string[] args)
         {
-            int[,] fieldWithShips = new int[10, 10];
+            string[,] fieldWithShips = new string[10, 10];
+            for(int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    fieldWithShips[i, j] = "O";
+                }
+            }
             FieldOutput(fieldWithShips);
             Console.WriteLine();
             InputDataShip(3, 2, ref fieldWithShips);
             Console.ReadLine();
         }
 
-        static void InputDataShip(int sizeOfShips, int numberOfShips, ref int[,] fieldWithShips)
+        static void InputDataShip(int sizeOfShips, int numberOfShips, ref string[,] fieldWithShips)
         {
             int coordinates;
             int orientation;
@@ -47,7 +54,7 @@ namespace Task_4
 
         }
 
-        static void FieldOutput(int [,] fieldWithShips) {
+        static void FieldOutput(string [,] fieldWithShips) {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("   | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |");
             Console.WriteLine("  -----------------------------------------");
@@ -60,7 +67,7 @@ namespace Task_4
                 Console.ForegroundColor = ConsoleColor.White;
                 for (int j = 0; j < fieldWithShips.GetLength(1); j++)
                 {
-                    if(fieldWithShips[i, j] == 1)
+                    if(fieldWithShips[i, j] == "X")
                     {
                         Console.ForegroundColor = ConsoleColor.Magenta;
                         Console.Write(" " + fieldWithShips[i, j]);
@@ -73,30 +80,30 @@ namespace Task_4
             }
         }
 
-        static bool ShipPlacement(int size, int coordinates, int orientation, ref int[,] fieldWithShips)
+        static bool ShipPlacement(int size, int coordinates, int orientation, ref string[,] fieldWithShips)
         {
             if (orientation == 0)
             {
                 for (int i = coordinates % 10; i < (coordinates % 10 + size); i++)
                 {
-                    if (i == 10 || fieldWithShips[coordinates / 10, i] == 1)
+                    if (i == 10 || fieldWithShips[coordinates / 10, i] == "X")
                     {
                         Console.WriteLine("Нельзя установить корабль. Повторите ввод");
                         return false;
                     }
-                    fieldWithShips[coordinates / 10, i] = 1;
+                    fieldWithShips[coordinates / 10, i] = "X";
                 }
             } 
             else
             {
                 for (int i = coordinates / 10; i < (coordinates / 10 + size); i++)
                 {
-                    if (i == 10 || fieldWithShips[i, coordinates % 10] == 1)
+                    if (i == 10 || fieldWithShips[i, coordinates % 10] == "X")
                     {
                         Console.WriteLine("Нельзя установить корабль. Повторите ввод");
                         return false;
                     }
-                    fieldWithShips[i, coordinates % 10] = 1;
+                    fieldWithShips[i, coordinates % 10] = "X";
                 }
             }
             
