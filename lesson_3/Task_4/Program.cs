@@ -11,20 +11,20 @@ namespace Task_4
         static void Main(string[] args)
         {
             string[,] fieldWithShips = new string[10, 10];
-            for(int i = 0; i < 10; i++)
+            for(int i = 0; i < fieldWithShips.GetLength(0); i++)
             {
-                for (int j = 0; j < 10; j++)
+                for (int j = 0; j < fieldWithShips.GetLength(1); j++)
                 {
                     fieldWithShips[i, j] = "O";
                 }
             }
             FieldOutput(fieldWithShips);
             Console.WriteLine();
-            InputDataShip(3, 2, ref fieldWithShips);
+            InputDataShip(3, 2, fieldWithShips);
             Console.ReadLine();
         }
 
-        static void InputDataShip(int sizeOfShips, int numberOfShips, ref string[,] fieldWithShips)
+        static void InputDataShip(int sizeOfShips, int numberOfShips, string[,] fieldWithShips)
         {
             int coordinates;
             int orientation;
@@ -47,7 +47,7 @@ namespace Task_4
                     while (!Int32.TryParse(Console.ReadLine(), out orientation));
 
                 }
-                while (!ShipPlacement(sizeOfShips, coordinates, orientation, ref fieldWithShips));
+                while (!ShipPlacement(sizeOfShips, coordinates, orientation, fieldWithShips));
                 
                 FieldOutput(fieldWithShips);
             }
@@ -56,8 +56,18 @@ namespace Task_4
 
         static void FieldOutput(string [,] fieldWithShips) {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("   | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |");
-            Console.WriteLine("  -----------------------------------------");
+            Console.Write("   |");
+            for(int i = 0; i < fieldWithShips.GetLength(1); i++)
+            {
+                Console.Write($" {i} |");
+            }
+            Console.WriteLine();
+            Console.Write("     ");
+            for (int i = 0; i < fieldWithShips.GetLength(1); i++)
+            {
+                Console.Write($"----");
+            }
+            Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.White;
             for (int i = 0; i < fieldWithShips.GetLength(0); i++)
             {
@@ -76,11 +86,16 @@ namespace Task_4
                     Console.Write(" |");
                 }
                 Console.WriteLine();
-                Console.WriteLine("  -----------------------------------------");
+                Console.Write("     ");
+                for (int z = 0; z < fieldWithShips.GetLength(1); z++)
+                {
+                    Console.Write($"----");
+                }
+                Console.WriteLine();
             }
         }
 
-        static bool ShipPlacement(int size, int coordinates, int orientation, ref string[,] fieldWithShips)
+        static bool ShipPlacement(int size, int coordinates, int orientation, string[,] fieldWithShips)
         {
             if (orientation == 0)
             {
