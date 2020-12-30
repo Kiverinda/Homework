@@ -8,19 +8,12 @@ namespace Task_1
         {
             Console.WriteLine(Properties.Settings.Default.greeting);
             
-            if (!string.IsNullOrEmpty(Properties.Settings.Default.userName)) 
-            {
-                string greeting = Properties.Settings.Default.greeting;
-                string userName = Properties.Settings.Default.userName;
-                string userAge = Properties.Settings.Default.userAge;
-                string userTypeActivity = Properties.Settings.Default.userTypeActivity;
-
-                Console.WriteLine($"Ваше имя: {userName}!");
-                Console.WriteLine($"Ваш возраст: {userAge}");
-                Console.WriteLine($"Ваш род деятельности: {userTypeActivity}");
-            }
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.userName)) Console.WriteLine($"Ваше имя: {Properties.Settings.Default.userName}");
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.userAge)) Console.WriteLine($"Ваш возраст: {Properties.Settings.Default.userAge}");
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.userTypeActivity)) Console.WriteLine($"Ваше род деятельности: {Properties.Settings.Default.userTypeActivity}");
 
             SetDataUser();
+            
             Console.ReadLine();
         }
 
