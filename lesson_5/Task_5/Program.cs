@@ -42,7 +42,7 @@ namespace Task_5
                     task.RemoveAt(int.Parse(Console.ReadLine()) - 1);
                     WriteConsole(task);
                 }
-                else if (userAction == "Q" || userAction == "q")
+                else if (userAction.ToLower() == "q")
                 {
                     SetTask(task, pathToFile);
                     break;
