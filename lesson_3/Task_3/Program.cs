@@ -8,10 +8,10 @@ namespace Task_3
         {
             Console.WriteLine("Ведите фразу");
             string stringUser = Console.ReadLine();
-            
-            for(int i = stringUser.Length; i > 0; i--)
+
+            for (int i = stringUser.Length - 1; i >= 0; i--)
             {
-                Console.Write(stringUser[i - 1]);
+                Console.Write(stringUser[i]);
             }
             
             Console.ReadLine();
